@@ -6,7 +6,7 @@
 /*   By: imraoui <imraoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 10:51:07 by hferjani          #+#    #+#             */
-/*   Updated: 2023/02/23 18:40:11 by imraoui          ###   ########.fr       */
+/*   Updated: 2023/02/24 18:53:55 by imraoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ typedef struct s_cmd
         int     argc;
         int     nbr_pipe;
         int	**pfd;
-        pid_t   *pid;
+        pid_t   pid;
         pid_t	pid_one;
         struct s_cmd    *next;
         //struct s_cmd    *prev;

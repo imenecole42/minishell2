@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hferjani <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: imraoui <imraoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 10:50:28 by hferjani          #+#    #+#             */
-/*   Updated: 2023/02/24 10:21:14 by hferjani         ###   ########.fr       */
+/*   Updated: 2023/02/24 15:23:28 by imraoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,10 @@ int main(int argc, char **argv, char **env)
             print_token(&data.token);
             // // //data.cmds = init_command();
             data.cmds = parse_cmd_table(data.token);
+            data.cmds->nbr_cmd = ft_count_list(data.cmds);
+            data.cmds->nbr_pipe = data.cmds->nbr_cmd - 1;
             print_liste_cmd(&data.cmds);
+            exec_cmd(data.cmds,&data);
             //ft_basic_functions(line, argv);
             //read_command(command, parameters); // read input from terminal
         //if (fork() != 0) //parent

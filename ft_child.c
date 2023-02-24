@@ -6,7 +6,7 @@
 /*   By: imraoui <imraoui@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 13:32:08 by imraoui           #+#    #+#             */
-/*   Updated: 2023/02/23 18:39:39 by imraoui          ###   ########.fr       */
+/*   Updated: 2023/02/24 17:01:18 by imraoui          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	child1(t_cmd *pipex)
 	if (pipex -> fd_in < 0)
 		return (close_fd(pipex));
 	ft_dup(pipex -> pfd[pipex->i][1], pipex->fd_in);
-	ft_close(pipex);
+	//ft_close(pipex);
 }
 
 void	child2(t_cmd *pipex)
@@ -40,18 +40,21 @@ void	child2(t_cmd *pipex)
 		return (close_fd(pipex));
 	ft_dup(pipex->fd_out,
 		pipex->pfd[pipex->i - 1][0]);
-	ft_close(pipex);
+	//ft_close(pipex);
 }
 
 void	child(t_cmd *pipex, char **envp)
 {
-	while(pipex != NULL)
+	while(pipex->next != NULL)
 	{
 		/*if(pipex->cmd[0] && builtin_env(pipex->cmd))
 		{
 			is_builtin(mini,pipex->cmd);
 			free_exeve(pipex);		
 		}*/
+		ft_putstr_fd("REPAIR1\n", 2);
+		ft_putstr_fd(pipex->cmd[0], 2);
+		ft_putstr_fd("REPAIR2\n", 2);
 		if (pipex->cmd[0] && /*!builtin_env(pipex->cmd) &&*/ get_cmd(pipex->cmd[0], envp))
 		{
 			execve(get_cmd(pipex->cmd[0], envp), pipex->cmd, envp);
@@ -64,6 +67,8 @@ void	child(t_cmd *pipex, char **envp)
 			free_exeve(pipex);
 		}
 		pipex = pipex->next;
+
 		
-	}		
+	}
+	// }		
 }
